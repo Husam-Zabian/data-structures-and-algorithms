@@ -1,35 +1,83 @@
 from StackAndQueue.Node import Node
 
+
 class Stack:
+    """
+    A class for the stack data structure using a linked list.
 
+    """
     def __init__(self):
+        """
+        Initializes an empty Stack.
+        """
         self.top = None
-        self.size = 0
 
-    def push(self,value):
-        node = Node(value)
-        if self.top:
-            node.next = self.top
-        self.top = node
-        self.size += 1
+    def __str__(self):
+        """
+        returns a string representation of the class Stack
+        """
+        output = ""
+        if self.top is None:
+            output = "Empty Stack LinkeList"
+        else:
+            current = self.top
+            while(current):
+                output += f'{current.value} --> '
+                current = current.next
+            output += " None"
+        return output
+    
+    def __repr__(self):
+        """
+        returns a string representation of the class Stack
+        """
+        output = ""
+        if self.top is None:
+            output = "Empty Stack LinkeList"
+        else:
+            current = self.top
+            while(current):
+                output += f'{current.value} --> '
+                current = current.next
+            output += " None"
+        return output   
+    
+    def push(self, value):
+        """
+        Adds a new node with the given value to the top of the stack.
 
+        Parameters
+        ----------
+        value : node value.
+
+        """
+        new_node = Node(value)
+        new_node.next = self.top
+        self.top = new_node
+    
     def pop(self):
-        if self.top is not None:
-            temp = self.top
+        """
+        Removes and returns the value of the top node of the stack.
+        """
+        if self.is_empty():
+            raise Exception("Stack is empty")
+        else:
+            value = self.top.value
             self.top = self.top.next
-            self.size -= 1
-            return temp.value
-        else:
-          raise Exception("stack is empty")
-
+            return value
+    
     def peek(self):
-        if self.top:
-            return self.top.value
+        """
+        Returns The Value of the node located at the top of the stack
+        """
+        if self.is_empty():
+            raise Exception("Stack is empty")
         else:
-             raise Exception("this stack is empty")
-        
-    def get_size(self):
-        return self.size
-
+            return self.top.value
+    
     def is_empty(self):
-        return self.size == 0
+        """
+        Returns True if the stack is empty, Else False .
+
+        """
+        return self.top == None

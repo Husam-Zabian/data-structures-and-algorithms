@@ -1,4 +1,5 @@
-from StackAndQueue.StackAndQueue.Stack import Stack
+from StackAndQueue.Stack import Stack
+import pytest
 
 def validate_brackets(string):
     stack = Stack()

@@ -1,6 +1,7 @@
 
 from StackAndQueue.Node import Node
 from StackAndQueue.Queue import Queue
+import pytest
 
 def test_enqueue():
     queue = Queue()
