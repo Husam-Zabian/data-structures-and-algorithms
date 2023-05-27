@@ -49,6 +49,7 @@ class LinkedList:
             current_node = current_node.next
         result += "NULL"
         return result
+
     def append(self, value):
         """
         Append a new node with the given value to the end of the linked list.
@@ -63,6 +64,7 @@ class LinkedList:
         while current_node.next:
             current_node = current_node.next
         current_node.next = new_node
+
 
     def insert_before(self, value, new_value):
         """
@@ -103,6 +105,7 @@ class LinkedList:
                 new_node.next = current_node.next
                 current_node.next = new_node
                 return
+       linked-list-kth
             current_node = current_node.next
 
     def kthFromEnd(self,k):
@@ -133,3 +136,6 @@ class LinkedList:
             
         
         return current_node.value 
+
+            current_node = current_node.next     
+
