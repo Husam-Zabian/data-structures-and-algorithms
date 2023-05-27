@@ -37,6 +37,33 @@ class BinaryTree:
         result += self.postorder_traversal(node.right)
         result.append(node.value)
         return result
+    
+    def find_maximum_value(self):
+        """
+        Returns the maximum value stored in the binary tree.
+        """
+        if self.root is None:
+            raise ValueError("Binary tree is empty.")
+        
+        return self.recursive_Helper(self.root)
+
+    def recursive_Helper(self, node):
+        """
+        Helper method to recursively find the maximum value in the binary tree.
+        """
+        if node is None:
+            return float('-inf')
+
+        max_value = node.value
+        left_max = self.recursive_Helper(node.left)
+        right_max = self.recursive_Helper(node.right)
+
+        if left_max > max_value:
+            max_value = left_max
+        if right_max > max_value:
+            max_value = right_max
+
+        return max_value
 
     def __str__(self):
         """
