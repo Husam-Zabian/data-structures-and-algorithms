@@ -49,7 +49,7 @@ class LinkedList:
             current_node = current_node.next
         result += "NULL"
         return result
-    
+
     def append(self, value):
         """
         Append a new node with the given value to the end of the linked list.
@@ -105,4 +105,37 @@ class LinkedList:
                 new_node.next = current_node.next
                 current_node.next = new_node
                 return
+       linked-list-kth
+            current_node = current_node.next
+
+    def kthFromEnd(self,k):
+        """
+        Returns the value of the node that is k places from the tail of the linked list.
+        
+        Args:
+            k (int): The distance from the end of the linked list.
+        """
+        if k < 0:
+            raise ValueError("k cannot be negative")
+    
+        if self.head is None:
+            return None
+        
+        current_node = self.head
+        length = 0
+        while current_node:
+            length += 1
+            current_node = current_node.next
+        
+        if k >= length:
+            return None
+        
+        current_node = self.head
+        for _ in range(1,length - k):
+            current_node = current_node.next
+            
+        
+        return current_node.value 
+
             current_node = current_node.next     
+
