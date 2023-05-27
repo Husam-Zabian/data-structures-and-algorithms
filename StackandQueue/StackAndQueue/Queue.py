@@ -1,38 +1,84 @@
-
 from StackAndQueue.Node import Node
-
 class Queue:
+    """
+    A class for the Queue data structure using a singly linked list.
+    """
     def __init__(self):
+        """
+        Initializes an empty queue.
+        """
         self.front = None
-        self.rear = None
+        self.back = None
 
-    def enqueue(self,value):
-        node = Node(value)
-
-       
-        if not self.rear:
-            self.front = node
-            self.rear = node
+    def __str__(self):
+        """
+        Returns a string representation of the queue.
+        """
+        output = ""
+        if self.front is None:
+            output = "Empty Queue LinkedList"
         else:
-            self.rear.next = node
-            self.rear = node
+            current = self.front
+            while current:
+                output += f"{current.value} --> "
+                current = current.next
+            output += "None"
+        return output
+
+    def __repr__(self):
+        """
+        Returns a string representation of the class queue.
+        """
+        output = ""
+        if self.front is None:
+            output = "Empty Queue LinkedList"
+        else:
+            current = self.front
+            while current:
+                output += f"{current.value} --> "
+                current = current.next
+            output += "None"
+        return output
+
+    def enqueue(self, value):
+        """
+        Adds a new node with the given value to the back of the queue.
+
+        Parameters:
+        value (any): The value of the new node.
+        """
+        new_node = Node(value)
+        if self.front is None:
+            self.front = new_node
+            self.back = new_node
+        else:
+            self.back.next = new_node
+            self.back = new_node
 
     def dequeue(self):
-      
-        if self.front == None:
-            raise Exception("This queue is empty") 
-       
-        if self.front == self.rear:
-            self.rear = None
-        
-        temp = self.front
-        self.front = self.front.next
-        temp.next = None
-
-        return temp.value
+        """
+        Removes and returns the value of the front node of the queue.
+        """
+        if self.front is None:
+            raise Exception("Queue is empty")
+        else:
+            value = self.front.value
+            self.front = self.front.next
+            if self.front is None:
+                self.back = None
+            return value
 
     def peek(self):
-        if self.front == None:
-            raise Exception("This queue is empty")
-        return self.front.value
-        
+        """
+        Returns the value of the front node of the queue without removing it.
+        """
+        if self.front is None:
+            raise Exception("Queue is empty")
+        else:
+            return self.front.value
+
+    def is_empty(self):
+        """
+        Returns True if the queue is empty, else False.
+        """
+        return self.front is None
